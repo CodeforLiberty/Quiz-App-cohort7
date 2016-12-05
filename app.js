@@ -48,21 +48,36 @@ function renderStart(state){
 	$('.js-welcome').addClass('hidden');
 	$('.js-question').removeClass('hidden');
 	$('.js-answer-count').removeClass('hidden');
-	var correct = $('js-correct-answers');
-
-	var correctHtml = correct.html('<span id ="js-correct-answers>'+state.right + '</span>');
-	console.log(correctHtml);
 	
+	var possibleAnswers = state.questions[state.currentQuestion].answerOptions;
+
+	var correct = $('#js-correct-answers').html(state.right);
+	
+	
+	var numberOfQuestions = $('#js-total-answers').html(state.questions.length);
+	
+	var currentQuery = $('#js-question-number').html(state.currentQuestion);	
+	
+	var renderQuestion = $('.js-question').html('<p>Question Number '+ state.currentQuestion +'</br>'+
+	'<span id="js-question-number"></span>'+ state.questions[state.currentQuestion].question + 
+	'</p><form class="js-question-form"></form><button class="restart">Restart</button>');
+
+	var renderOptions = '<input type="radio" name="answer" value="0" required>'+ possibleAnswers[0] + 
+		'<br>' + '<input type="radio" name="answer" value="1">' + possibleAnswers[1] + '<br>' +
+		 '<input type="radio" name="answer" value="2">' + possibleAnswers[2] +'<br>'  + 
+		 '<input type="radio" name="answer" value="3">' + possibleAnswers[3] + '<br>' +
+		  '<button class="next">' + 'Submit' + '</button>';
+	 var addInput = $('.js-question-form').html(renderOptions);
 
 
 }
 // Event handlers
 // When start button is submitted
 $('.js-start').click(function(event) {
-	event.preventDefault();
-	console.log('help');
-	state.route = 'Started';
-	state.currentQuestion = 1;
+	//event.preventDefault();
+	//console.log('help');
+	//state.route = 'Started';
+	state.currentQuestion = 0;
 	state.rightAnswerCounter = 0;
 	renderStart(state);
 
