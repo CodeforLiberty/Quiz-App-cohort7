@@ -1,0 +1,56 @@
+ Our app presents quiz to the user and tells them if they are wrong or right with the option to restart
+
+story: A javascript devloper is trying to review fundamentals
+
+response: Present base page with html/css and start button without default behavior.
+
+risks: default behaviors of buttons, which is fixed by event.prevent default
+
+story: The student wants to start the quiz and clicks the start button
+
+response: we add in the question, and answers along with which question it is and the submit along with the restart button
+
+risks:Default behavior and undefined variable references, event delegation(event bubbling) is also a possible issue.
+
+story: The student wants to restart the quiz and clicks the restart button
+
+response: Set state current question property to 1.
+
+risks:default behavior,event delegation
+
+story: The student presses the next button
+
+response: add one to the state current property
+
+risks:default behavior
+
+story: Users have to submit something for each question
+
+response: throw an error if no answer is selected
+
+risks:default behavior
+
+story:User submits a answer
+
+response: checking the value of the selected answer with the questions rightanswer property and then rendering the next question
+
+risks:accessing the right thing
+
+story: User finishes quiz
+
+response: render you got right question.right out of questions.val
+
+risks:accessing the right thing
+
+story:A user submits the right question
+
+response: add one to the states rightQuestion property and alert the student they got the question correct
+
+risks:accessing the right thing
+
+story: A user gets a question wrong
+
+response:alert the student they got a question wrong
+
+
+
