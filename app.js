@@ -1,4 +1,4 @@
-
+"use strict"
 // Create your initial state object
 var state = {
 
@@ -27,7 +27,7 @@ answerOptions: ['tests if it is true','tests if it is false','superman'],
 rightAnswer: 0}
 ],
 
-rightAnswerCounter: 0,
+right: 0,
 currentQuestion: 0,
 
 route: 'Welcome'
@@ -44,9 +44,16 @@ function renderNextQuestion(state){
 
 }  
 function renderStart(state){
+	console.log(state.right);
 	$('.js-welcome').addClass('hidden');
 	$('.js-question').removeClass('hidden');
 	$('.js-answer-count').removeClass('hidden');
+	var correct = $('js-correct-answers');
+
+	var correctHtml = correct.html('<span id ="js-correct-answers>'+state.right + '</span>');
+	console.log(correctHtml);
+	
+
 
 }
 // Event handlers
@@ -57,7 +64,8 @@ $('.js-start').click(function(event) {
 	state.route = 'Started';
 	state.currentQuestion = 1;
 	state.rightAnswerCounter = 0;
-	renderStart();
+	renderStart(state);
+
 });
 
 // Current answer is submitted
