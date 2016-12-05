@@ -8,19 +8,19 @@ var state = {
 answerOptions: ['Donald Trump','Hillary Clinton','Bernie Sanders'],
 rightAnswer: 0},
  
- {question: 'What is a HOF',
+ {question: 'What is a high order function?',
 answerOptions: ['Wim Hof','Nikola Tesla','Chuck Norris'],
 rightAnswer: 1},
  
  {question: 'What is the difference between == and === ?',
 answerOptions: ['Africa','== checks value and allows coercion, === checks if the value and data type match without coercion'
  ,'North America'],
-rightAnswer: '== checks value and allows coercion, === checks if the value and data type match without coercion'
-}
+rightAnswer: '== checks value and allows coercion of the left element to the right elements datatype, === checks if the value and data type match without coercion'
+},
  
  {question: 'What value does a variable get if you do not assign it a value?',
 answerOptions: ['null','undefined','0'],
-rightAnswer: 1}
+rightAnswer: 1},
  
  {question: 'What does bang bang mean (!!) ?',
 answerOptions: ['tests if it is true','tests if it is false','superman'],
