@@ -1,7 +1,7 @@
 "use strict";
 // Create your initial state object
-var state = {
 
+var state = {
     // Questions
     questions: [      
     {question: 'When you create a button inside of a form without a submit button what will it do?',
@@ -34,9 +34,6 @@ var state = {
     
 };
 
-
-
-
 // State manipulation functions
 // Render functions
 function checkAnswer (state, selectedAnswer) {
@@ -64,16 +61,13 @@ if ( selectedAnswer !== undefined && selectedAnswer != correctAnswer) {
 	state.currentQuestion++;
 	renderStart(state);
 }
-
 }
 
 function renderEnd(state) {
-$('.js-question').html (`<h1>You finished the Quiz</h1> <br/> <p>You got ${state.right} questions correct out of ${state.currentQuestion}</p><br><button class='retry'>Retry</button` )
+	$('.js-question').html (`<h1>You finished the Quiz</h1> <br/> <p>You got ${state.right} questions correct out of 
+	${state.currentQuestion}</p><br><button class='retry'>Retry</button` );
 
-}
-
-
-
+	}
 
 function renderStart(state){
 	if( state.currentQuestion == 5) {
@@ -113,14 +107,7 @@ $('.js-start').click(function(event) {
 
 });
 
-// // Current answer is submitted
-// $('.answer').submit(function(event) {
-// });
-
- //Next question
-
- //replace with on click to the js-question
- $('.js-question.hidden').on('click','#next',function(event)  {
+$('.js-question.hidden').on('click','#next',function(event)  {
  	event.preventDefault();
  	console.log("HELLLLLLLLLLO");
 	var selectedAnswer = $(".js-question-form input:checked").val();
@@ -133,7 +120,5 @@ console.log('checking retry button');
 state.currentQuestion = 0;
 state.right = 0;
 renderStart(state);
- })
-// // Restart button is clicked
-// $('.restart').click(function(event) {
-// });
+ });
+
