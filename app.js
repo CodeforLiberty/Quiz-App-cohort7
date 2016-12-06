@@ -5,7 +5,7 @@ var state = {
     // Questions
     questions: [      
     {question: 'When you create a button inside of a form without a submit button what will it do?',
-    answerOptions: ['It will attach its submit function to it automatically and make you ask Nicholas Straub for help','Its a design issue','It will run the buttons code from your Js as expected'],
+    answerOptions: ['It will attach its submit function to it automatically ','??','It will run the buttons code from your Js as expected'],
     rightAnswer: 0},
 
     {question: 'What is a high order function?',
@@ -36,6 +36,12 @@ var state = {
 
 // State manipulation functions
 // Render functions
+function checkAnswer (state) {
+var nextButtonCheck = $(".js-question-form input:checked").val();
+
+
+}
+
 function renderNextQuestion(state){
 
 }  
@@ -80,8 +86,7 @@ $('.js-start').click(function(event) {
 // });
 
  //Next question
- $('#next').on("click",function(event) {
- console.log(nextButtonCheck);
+ $('.js-question-form').on("submit",function(event) {
  event.preventDefault();
  var nextButtonCheck = $(".js-question-form input:checked").val();
  console.log(nextButtonCheck);
