@@ -35,15 +35,14 @@ var state = {
 };
 
 
-console.log(state);
+
 
 // State manipulation functions
 // Render functions
-function checkAnswer (state) {
+function checkAnswer (state, selectedAnswer) {
  
  console.log(state);
- var selectedAnswer = $(".js-question-form input:checked").val();
-var correctAnswer = state.questions[0].rightAnswer;
+var correctAnswer = state.questions[state.currentQuestion].rightAnswer;
 
 console.log(correctAnswer);
 console.log(selectedAnswer);
@@ -68,11 +67,19 @@ if ( selectedAnswer !== undefined && selectedAnswer != correctAnswer) {
 
 }
 
+function renderEnd(state) {
+$('.js-question').html (`<h1>You finished the Quiz</h1> <br/> <p>You got ${state.right} questions correct out of ${state.currentQuestion}</p><br><button class='retry'>Retry</button` )
+
+}
 
 
 
 
 function renderStart(state){
+	if( state.currentQuestion == 5) {
+
+		renderEnd(state);
+	}
 	var questionNumberUpdate = state.currentQuestion +1; 
     console.log(questionNumberUpdate);
 	var possibleAnswers = state.questions[state.currentQuestion].answerOptions;
@@ -85,7 +92,7 @@ function renderStart(state){
 	
 	var renderQuestion = $('.js-question').html('<p>Question Number '+ questionNumberUpdate +'</br>'+
 	'<span id="js-question-number"></span>'+ state.questions[state.currentQuestion].question + 
-	'</p><form class="js-question-form"></form><button id = "next" onclick="nextQuestion(state);"> NEXT </button><button class="restart">Restart</button>');
+	'</p><form class="js-question-form"></form><button id = "next"> NEXT </button><button class="restart">Restart</button>');
 
 	var renderOptions = '<input type="radio" name="answer" value="0" required>'+'<label>'+ possibleAnswers[0] + '</label>' +
 		'<br>' + '<input type="radio" name="answer" value="1">' +'<label>' + possibleAnswers[1] + '</label>' + '<br>' +
@@ -93,13 +100,11 @@ function renderStart(state){
 		 '<input type="radio" name="answer" value="3">'+ '<label>' + possibleAnswers[3] + '</label>';
 	var addInput = $('.js-question-form').html(renderOptions);
 
-
-//document.ready needs to wrap event handlers
 }
 // Event handlers
 // When start button is submitted
 $('.js-start').click(function(event) {
-	//event.preventDefault();
+	event.preventDefault();
 	//console.log('help');
 	//state.route = 'Started';
 	state.currentQuestion = 0;
@@ -113,10 +118,14 @@ $('.js-start').click(function(event) {
 // });
 
  //Next question
- function nextQuestion (state) {
- 
- checkAnswer(state);
- };
+
+ //replace with on click to the js-question
+ $('.js-question.hidden').on('click','#next',function(event)  {
+ 	event.preventDefault();
+ 	console.log("HELLLLLLLLLLO");
+	var selectedAnswer = $(".js-question-form input:checked").val();
+	checkAnswer(state, selectedAnswer);
+ }); 
 
 // // Restart button is clicked
 // $('.restart').click(function(event) {
