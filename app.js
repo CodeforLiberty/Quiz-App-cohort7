@@ -40,23 +40,25 @@ function renderNextQuestion(state){
 
 }  
 function renderStart(state){
+	var questionNumberUpdate = state.currentQuestion +1; 
+    console.log(questionNumberUpdate);
 	var possibleAnswers = state.questions[state.currentQuestion].answerOptions;
 	 $('.js-welcome').addClass('hidden'); //Hide welcome message
 	 $('.js-question').removeClass('hidden');//Show the question
 	 $('.js-answer-count').removeClass('hidden');//Display count
 	 $('#js-correct-answers').html(state.right);
 	 $('#js-total-answers').html(state.questions.length);
-	 $('#js-question-number').html(state.currentQuestion);	
+	 $('#js-question-number').html(questionNumberUpdate);	
 	
-	var renderQuestion = $('.js-question').html('<p>Question Number '+ state.currentQuestion +'</br>'+
+	var renderQuestion = $('.js-question').html('<p>Question Number '+ questionNumberUpdate +'</br>'+
 	'<span id="js-question-number"></span>'+ state.questions[state.currentQuestion].question + 
-	'</p><form class="js-question-form"></form><button class = "next"> NEXT </button><button class="restart">Restart</button>');
+	'</p><form class="js-question-form"></form><button id = "next"> NEXT </button><button class="restart">Restart</button>');
 
 	var renderOptions = '<input type="radio" name="answer" value="0" required>'+'<label>'+ possibleAnswers[0] + '</label>' +
 		'<br>' + '<input type="radio" name="answer" value="1">' +'<label>' + possibleAnswers[1] + '</label>' + '<br>' +
 		 '<input type="radio" name="answer" value="2">' + '<label>'+ possibleAnswers[2] + '</label>' +'<br>'  + 
 		 '<input type="radio" name="answer" value="3">'+ '<label>' + possibleAnswers[3] + '</label>';
-	 var addInput = $('.js-question-form').html(renderOptions);
+	var addInput = $('.js-question-form').html(renderOptions);
 
 
 
@@ -78,9 +80,11 @@ $('.js-start').click(function(event) {
 // });
 
  //Next question
- $('.next').on("click",function(event) {
+ $('#next').on("click",function(event) {
+ console.log(nextButtonCheck);
  event.preventDefault();
- 
+ var nextButtonCheck = $(".js-question-form input:checked").val();
+ console.log(nextButtonCheck);
  });
 
 // // Restart button is clicked
