@@ -1,11 +1,11 @@
-"use strict"
+"use strict";
 // Create your initial state object
 var state = {
 
     // Questions
     questions: [      
-    {question: 'How does protoypal inhertitance work in JavaScript?',
-    answerOptions: ['Donald Trump','Hillary Clinton','Bernie Sanders'],
+    {question: 'When you create a button inside of a form without a submit button what will it do?',
+    answerOptions: ['It will attach its submit function to it automatically and make you ask Nicholas Straub for help','Its a design issue','It will run the buttons code from your Js as expected'],
     rightAnswer: 0},
 
     {question: 'What is a high order function?',
@@ -15,27 +15,23 @@ var state = {
     {question: 'What is the difference between == and === ?',
     answerOptions: ['Africa','== checks value and allows coercion, === checks if the value and data type match without coercion'
     ,'North America'],
-    rightAnswer: '== checks value and allows coercion of the left element to the right elements datatype, === checks if the value and data type match without coercion'
-},
+    rightAnswer:1
+	},
 
-{question: 'What value does a variable get if you do not assign it a value?',
-answerOptions: ['null','undefined','0'],
-rightAnswer: 1},
+	{question: 'What value does a variable get if you do not assign it a value?',
+	answerOptions: ['null','undefined','0'],
+	rightAnswer: 1},
 
-{question: 'What does bang bang mean (!!) ?',
-answerOptions: ['tests if it is true','tests if it is false','superman'],
-rightAnswer: 0}
-],
+	{question: 'What does bang bang mean (!!) ?',
+	answerOptions: ['tests if it is true','tests if it is false','superman'],
+	rightAnswer: 0}
+	],
 
-right: 0,
-currentQuestion: 0,
+	right: 0,
+	currentQuestion: 0,
 
-route: 'Welcome'
-    // Answers
-    // Your choice of answer	
-    // Message(s) to let them know they have the correct answer	
-    // Message(s) when they don't have the correct answer
-    // Other things like score? Anything else?
+	route: 'Welcome'
+    
 };
 
 // State manipulation functions
@@ -44,30 +40,24 @@ function renderNextQuestion(state){
 
 }  
 function renderStart(state){
-	console.log(state.right);
-	$('.js-welcome').addClass('hidden');
-	$('.js-question').removeClass('hidden');
-	$('.js-answer-count').removeClass('hidden');
-	
 	var possibleAnswers = state.questions[state.currentQuestion].answerOptions;
-
-	var correct = $('#js-correct-answers').html(state.right);
-	
-	
-	var numberOfQuestions = $('#js-total-answers').html(state.questions.length);
-	
-	var currentQuery = $('#js-question-number').html(state.currentQuestion);	
+	 $('.js-welcome').addClass('hidden'); //Hide welcome message
+	 $('.js-question').removeClass('hidden');//Show the question
+	 $('.js-answer-count').removeClass('hidden');//Display count
+	 $('#js-correct-answers').html(state.right);
+	 $('#js-total-answers').html(state.questions.length);
+	 $('#js-question-number').html(state.currentQuestion);	
 	
 	var renderQuestion = $('.js-question').html('<p>Question Number '+ state.currentQuestion +'</br>'+
 	'<span id="js-question-number"></span>'+ state.questions[state.currentQuestion].question + 
-	'</p><form class="js-question-form"></form><button class="restart">Restart</button>');
+	'</p><form class="js-question-form"></form><button class = "next"> NEXT </button><button class="restart">Restart</button>');
 
-	var renderOptions = '<input type="radio" name="answer" value="0" required>'+ possibleAnswers[0] + 
-		'<br>' + '<input type="radio" name="answer" value="1">' + possibleAnswers[1] + '<br>' +
-		 '<input type="radio" name="answer" value="2">' + possibleAnswers[2] +'<br>'  + 
-		 '<input type="radio" name="answer" value="3">' + possibleAnswers[3] + '<br>' +
-		  '<button class="next">' + 'Submit' + '</button>';
+	var renderOptions = '<input type="radio" name="answer" value="0" required>'+'<label>'+ possibleAnswers[0] + '</label>' +
+		'<br>' + '<input type="radio" name="answer" value="1">' +'<label>' + possibleAnswers[1] + '</label>' + '<br>' +
+		 '<input type="radio" name="answer" value="2">' + '<label>'+ possibleAnswers[2] + '</label>' +'<br>'  + 
+		 '<input type="radio" name="answer" value="3">'+ '<label>' + possibleAnswers[3] + '</label>';
 	 var addInput = $('.js-question-form').html(renderOptions);
+
 
 
 }
@@ -83,14 +73,16 @@ $('.js-start').click(function(event) {
 
 });
 
-// Current answer is submitted
-$('.answer').submit(function(event) {
-});
+// // Current answer is submitted
+// $('.answer').submit(function(event) {
+// });
 
-// Next question
-$('.next').click(function(event) {
-});
+ //Next question
+ $('.next').on("click",function(event) {
+ event.preventDefault();
+ 
+ });
 
-// Restart button is clicked
-$('.restart').click(function(event) {
-});
+// // Restart button is clicked
+// $('.restart').click(function(event) {
+// });
