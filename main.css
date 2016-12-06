@@ -8,7 +8,7 @@ body { margin:10% 33%; color:white;}
 
 p{ font-size: 1.5em; }
 
-button{ font-family:'Permanent Marker', cursive; width:65px;  }
+button{ font-family:'Permanent Marker', cursive; width:65px; margin:2%; border-color:blue; }
 
 .hidden {
 	display: none;
@@ -25,6 +25,7 @@ button{ font-family:'Permanent Marker', cursive; width:65px;  }
 .restart{ margin-top:30px; }
 
 input{ margin-bottom:20px; }
+label:hover{ color:blue; }
 
 #js-correct-answers {
 
