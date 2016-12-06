@@ -34,28 +34,44 @@ var state = {
     
 };
 
+
+console.log(state);
+
 // State manipulation functions
 // Render functions
-function checkAnswer (state, nextButtonCheck) {
+function checkAnswer (state) {
+ 
+ console.log(state);
+ var selectedAnswer = $(".js-question-form input:checked").val();
+var correctAnswer = state.questions[0].rightAnswer;
 
-switch (nextButtonCheck) {
-    case 0: 
-        alert("Correct");
-        state.right +1;
-        console.log(state.right);
-        break;
-    case !0 && !undefined:
-        question2 = "Incorrect";
-        
-        break;
-    case undefined:
-        question3 = "Undefined";
+console.log(correctAnswer);
+console.log(selectedAnswer);
+if (selectedAnswer == correctAnswer) {
+
+	alert("YOU ARE RIGHT");
+	state.right++;
+	state.currentQuestion++;
+	console.log(state.right);
+	renderStart(state);
 }
+if (selectedAnswer === undefined) {
+
+	alert("Select an answer");
+}
+if ( selectedAnswer !== undefined && selectedAnswer != correctAnswer) {
+
+	alert("YOU ARE WRONG");
+	state.currentQuestion++;
+	renderStart(state);
 }
 
-function renderNextQuestion(state){
+}
 
-}  
+
+
+
+
 function renderStart(state){
 	var questionNumberUpdate = state.currentQuestion +1; 
     console.log(questionNumberUpdate);
@@ -69,7 +85,7 @@ function renderStart(state){
 	
 	var renderQuestion = $('.js-question').html('<p>Question Number '+ questionNumberUpdate +'</br>'+
 	'<span id="js-question-number"></span>'+ state.questions[state.currentQuestion].question + 
-	'</p><form class="js-question-form"></form><button id = "next" onclick="nextQuestion();"> NEXT </button><button class="restart">Restart</button>');
+	'</p><form class="js-question-form"></form><button id = "next" onclick="nextQuestion(state);"> NEXT </button><button class="restart">Restart</button>');
 
 	var renderOptions = '<input type="radio" name="answer" value="0" required>'+'<label>'+ possibleAnswers[0] + '</label>' +
 		'<br>' + '<input type="radio" name="answer" value="1">' +'<label>' + possibleAnswers[1] + '</label>' + '<br>' +
@@ -99,8 +115,7 @@ $('.js-start').click(function(event) {
  //Next question
  function nextQuestion (state) {
  
- var nextButtonCheck = $(".js-question-form input:checked").val();
- checkAnswer(state, nextButtonCheck);
+ checkAnswer(state);
  };
 
 // // Restart button is clicked
