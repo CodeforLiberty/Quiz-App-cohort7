@@ -58,7 +58,7 @@ function renderStart(state){
 	
 	var renderQuestion = $('.js-question').html('<p>Question Number '+ questionNumberUpdate +'</br>'+
 	'<span id="js-question-number"></span>'+ state.questions[state.currentQuestion].question + 
-	'</p><form class="js-question-form"></form><button id = "next"> NEXT </button><button class="restart">Restart</button>');
+	'</p><form class="js-question-form"></form><button id = "next" onclick="nextQuestion();"> NEXT </button><button class="restart">Restart</button>');
 
 	var renderOptions = '<input type="radio" name="answer" value="0" required>'+'<label>'+ possibleAnswers[0] + '</label>' +
 		'<br>' + '<input type="radio" name="answer" value="1">' +'<label>' + possibleAnswers[1] + '</label>' + '<br>' +
@@ -67,7 +67,7 @@ function renderStart(state){
 	var addInput = $('.js-question-form').html(renderOptions);
 
 
-
+//document.ready needs to wrap event handlers
 }
 // Event handlers
 // When start button is submitted
@@ -86,11 +86,11 @@ $('.js-start').click(function(event) {
 // });
 
  //Next question
- $('.js-question-form').on("submit",function(event) {
- event.preventDefault();
+ function nextQuestion (state) {
+ 
  var nextButtonCheck = $(".js-question-form input:checked").val();
  console.log(nextButtonCheck);
- });
+ };
 
 // // Restart button is clicked
 // $('.restart').click(function(event) {
