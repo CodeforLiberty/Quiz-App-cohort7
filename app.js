@@ -36,10 +36,21 @@ var state = {
 
 // State manipulation functions
 // Render functions
-function checkAnswer (state) {
-var nextButtonCheck = $(".js-question-form input:checked").val();
+function checkAnswer (state, nextButtonCheck) {
 
-
+switch (nextButtonCheck) {
+    case 0: 
+        alert("Correct");
+        state.right +1;
+        console.log(state.right);
+        break;
+    case !0 && !undefined:
+        question2 = "Incorrect";
+        
+        break;
+    case undefined:
+        question3 = "Undefined";
+}
 }
 
 function renderNextQuestion(state){
@@ -89,7 +100,7 @@ $('.js-start').click(function(event) {
  function nextQuestion (state) {
  
  var nextButtonCheck = $(".js-question-form input:checked").val();
- console.log(nextButtonCheck);
+ checkAnswer(state, nextButtonCheck);
  };
 
 // // Restart button is clicked
