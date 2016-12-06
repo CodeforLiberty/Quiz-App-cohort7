@@ -38,17 +38,14 @@ var state = {
 // Render functions
 function checkAnswer (state, selectedAnswer) {
  
- console.log(state);
 var correctAnswer = state.questions[state.currentQuestion].rightAnswer;
 
-console.log(correctAnswer);
-console.log(selectedAnswer);
+
 if (selectedAnswer == correctAnswer) {
 
 	alert("YOU ARE RIGHT");
 	state.right++;
 	state.currentQuestion++;
-	console.log(state.right);
 	renderStart(state);
 }
 if (selectedAnswer === undefined) {
@@ -66,6 +63,7 @@ if ( selectedAnswer !== undefined && selectedAnswer != correctAnswer) {
 function renderEnd(state) {
 	$('.js-question').html (`<h1>You finished the Quiz</h1> <br/> <p>You got ${state.right} questions correct out of 
 	${state.currentQuestion}</p><br><button class='retry'>Retry</button` );
+	$('.js-answer-count').removeClass().addClass('hidden');
 
 	}
 
@@ -75,7 +73,6 @@ function renderStart(state){
 		renderEnd(state);
 	}
 	var questionNumberUpdate = state.currentQuestion +1; 
-    console.log(questionNumberUpdate);
 	var possibleAnswers = state.questions[state.currentQuestion].answerOptions;
 	 $('.js-welcome').addClass('hidden'); //Hide welcome message
 	 $('.js-question').removeClass('hidden');//Show the question
@@ -84,15 +81,16 @@ function renderStart(state){
 	 $('#js-total-answers').html(state.questions.length);
 	 $('#js-question-number').html(questionNumberUpdate);	
 	
-	var renderQuestion = $('.js-question').html('<p>Question Number '+ questionNumberUpdate +'</br>'+
-	'<span id="js-question-number"></span>'+ state.questions[state.currentQuestion].question + 
-	'</p><form class="js-question-form"></form><button id = "next"> NEXT </button><button class="restart">Restart</button>');
+	 $('.js-question').html(`<p>Question Number ${questionNumberUpdate}</br>
+	<span id="js-question-number"></span>${state.questions[state.currentQuestion].question}  
+	</p><form class="js-question-form"></form><button id = "next"> NEXT </button><button class="restart">Restart</button>`);
 
-	var renderOptions = '<input type="radio" name="answer" value="0" required>'+'<label>'+ possibleAnswers[0] + '</label>' +
-		'<br>' + '<input type="radio" name="answer" value="1">' +'<label>' + possibleAnswers[1] + '</label>' + '<br>' +
-		 '<input type="radio" name="answer" value="2">' + '<label>'+ possibleAnswers[2] + '</label>' +'<br>'  + 
-		 '<input type="radio" name="answer" value="3">'+ '<label>' + possibleAnswers[3] + '</label>';
-	var addInput = $('.js-question-form').html(renderOptions);
+	var renderOptions = `<input type="radio" name="answer" value="0" required><label> ${possibleAnswers[0]} </label> 
+		<br><input type="radio" name="answer" value="1"> <label>${possibleAnswers[1]}</label><br><input
+		 type="radio" name="answer" value="2"><label> ${possibleAnswers[2]}</label><br><input
+		  type="radio" name="answer" value="3"><label> ${possibleAnswers[3]}</label>`;
+	
+ $('.js-question-form').html(renderOptions);
 
 }
 // Event handlers
