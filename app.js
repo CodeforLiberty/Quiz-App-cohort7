@@ -127,6 +127,13 @@ $('.js-start').click(function(event) {
 	checkAnswer(state, selectedAnswer);
  }); 
 
+ $('.js-question.hidden').on('click', '.retry, .restart', function(event) {
+event.preventDefault();
+console.log('checking retry button');
+state.currentQuestion = 0;
+state.right = 0;
+renderStart(state);
+ })
 // // Restart button is clicked
 // $('.restart').click(function(event) {
 // });
