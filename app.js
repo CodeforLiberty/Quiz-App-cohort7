@@ -46,12 +46,10 @@ function checkAnswer (state, selectedAnswer) {
 		renderStart(state);
 	}
 	
-	if (selectedAnswer === undefined) {
+	if (!selectedAnswer) {
 
 		alert("Select an answer");
-	}
-	
-	if ( !!selectedAnswer && + selectedAnswer !== correctAnswer) {
+	} 	else if ( +selectedAnswer !== correctAnswer) {
 
 		alert("YOU ARE WRONG");
 		state.currentQuestion++;
