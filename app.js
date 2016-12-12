@@ -1,7 +1,7 @@
 "use strict";
 // Create your initial state object
-
-var state = {
+//----Added change for ES6.....changed var to const
+const state = {
     // Questions
     questions: [{
     	question: 'When you create a button inside of a form without a submit button what will it do?',
@@ -33,9 +33,12 @@ var state = {
 
 // State manipulation functions
 // Render functions
-function checkAnswer (state, selectedAnswer) {
+//----Added change for ES6.....changed function keyword to const 
+ const checkAnswer = (state, selectedAnswer) => {
  
-	var correctAnswer = state.questions[state.currentQuestion].rightAnswer;
+    //-----Added change for ES6.....changed var to let
+
+	let correctAnswer = state.questions[state.currentQuestion].rightAnswer;
 
 
 	if (+selectedAnswer === correctAnswer) {
@@ -56,21 +59,22 @@ function checkAnswer (state, selectedAnswer) {
 		renderStart(state);
 	}
 }
-
-function renderEnd(state) {
+//----Added change for ES6.....changed function keyword to const
+const renderEnd = (state) => {
 	$('.js-question').html (`<h1>You finished the Quiz</h1> <br/> <p>You got ${state.right} questions correct out of 
 	${state.currentQuestion}</p><br><button class='retry'>Retry</button` );
 	$('.js-answer-count').removeClass().addClass('hidden');
 
 }
-
-function renderStart(state){
+//----Added change for ES6.....changed function keyword to const
+const renderStart=(state) => {
 	if( state.currentQuestion == 5) {
 
 		renderEnd(state);
 	}
-	var questionNumberUpdate = state.currentQuestion +1; 
-	var possibleAnswers = state.questions[state.currentQuestion].answerOptions;
+	//----Added change for ES6.....changed var keyword to let
+	let questionNumberUpdate = state.currentQuestion +1; 
+	let possibleAnswers = state.questions[state.currentQuestion].answerOptions;
 	
 	$('.js-welcome').addClass('hidden'); //Hide welcome message
 	$('.js-question').removeClass('hidden');//Show the question
@@ -91,8 +95,8 @@ function renderStart(state){
 		<button class="restart">Restart</button>
 	`
 	);
-
-	var renderOptions = `
+   //----Added change for ES6.....changed var keyword to const
+	const renderOptions = `
 		<input type="radio" name="answer" value="0" required><label> ${possibleAnswers[0]} </label> <br>
 		<input type="radio" name="answer" value="1"> <label>${possibleAnswers[1]}</label><br>
 		<input type="radio" name="answer" value="2"><label> ${possibleAnswers[2]}</label><br>
@@ -104,7 +108,8 @@ function renderStart(state){
 }
 // Event handlers
 // When start button is submitted
-$('.js-start').click(function(event) {
+//----Added change for ES6.....changed function keyword 
+$('.js-start').click((event) => {
 	event.preventDefault();
 	//console.log('help');
 	//state.route = 'Started';
@@ -113,15 +118,15 @@ $('.js-start').click(function(event) {
 	renderStart(state);
 
 });
-
-$('.js-question.hidden').on('click','#next',function(event)  {
+//----Added change for ES6.....changed function keyword
+$('.js-question.hidden').on('click','#next',(event) => {
  	event.preventDefault();
  	console.log("HELLLLLLLLLLO");
-	var selectedAnswer = $(".js-question-form input:checked").val();
+	let selectedAnswer = $(".js-question-form input:checked").val();
 	checkAnswer(state, selectedAnswer);
  }); 
-
- $('.js-question.hidden').on('click', '.retry, .restart', function(event) {
+//----Added change for ES6.....changed function keyword
+ $('.js-question.hidden').on('click', '.retry, .restart', (event) => {
 event.preventDefault();
 console.log('checking retry button');
 state.currentQuestion = 0;
