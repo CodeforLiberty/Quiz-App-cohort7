@@ -52,6 +52,7 @@ const state = {
 	if (!selectedAnswer) {
 
 		alert("Select an answer");
+		
 	} 	else if ( +selectedAnswer !== correctAnswer) {
 
 		alert("YOU ARE WRONG");
@@ -88,6 +89,7 @@ const renderStart=(state) => {
 			Question Number <span id="js-question-number">${questionNumberUpdate}</span>
 			
 		</p> 
+		
 		<p> ${state.questions[state.currentQuestion].question} </p>
 		
 		<form class="js-question-form"></form>
@@ -111,8 +113,6 @@ const renderStart=(state) => {
 //----Added change for ES6.....changed function keyword 
 $('.js-start').click((event) => {
 	event.preventDefault();
-	//console.log('help');
-	//state.route = 'Started';
 	state.currentQuestion = 0;
 	state.rightAnswerCounter = 0;
 	renderStart(state);
@@ -121,16 +121,14 @@ $('.js-start').click((event) => {
 //----Added change for ES6.....changed function keyword
 $('.js-question.hidden').on('click','#next',(event) => {
  	event.preventDefault();
- 	console.log("HELLLLLLLLLLO");
-	let selectedAnswer = $(".js-question-form input:checked").val();
+ 	let selectedAnswer = $(".js-question-form input:checked").val();
 	checkAnswer(state, selectedAnswer);
  }); 
 //----Added change for ES6.....changed function keyword
  $('.js-question.hidden').on('click', '.retry, .restart', (event) => {
-event.preventDefault();
-console.log('checking retry button');
-state.currentQuestion = 0;
-state.right = 0;
-renderStart(state);
+	event.preventDefault();
+	state.currentQuestion = 0;
+	state.right = 0;
+	renderStart(state);
  });
 
