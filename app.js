@@ -9,11 +9,11 @@ const state = {
     	rightAnswer: 0
     }, {
     	question: 'What is a high order function?',
-    	answerOptions: ['Wim Hof','Nikola Tesla','Chuck Norris'],
+    	answerOptions: ['A function which is more complex', 'A function which is in a higher scope' , 'A function that runs before another function'],
     	rightAnswer: 1
     }, {
     	question: 'What is the difference <br /> between == and === ?',
-    	answerOptions: ['Africa','== checks value and allows coercion, === checks if the value and data type match without coercion'
+    	answerOptions: ['None one is just shorthand','== checks value and allows coercion, === checks if the value and data type match without coercion'
     	,'North America'],
     	rightAnswer:1
 	}, {
@@ -22,7 +22,7 @@ const state = {
 		rightAnswer: 1
 	}, {
 		question: 'What does bang bang mean (!!) ?',
-		answerOptions: ['tests if it is true','tests if it is false','superman'],
+		answerOptions: ['tests if it is true','tests if it is false',' Used to denote Emphasis'],
 		rightAnswer: 0
 	}],
 
